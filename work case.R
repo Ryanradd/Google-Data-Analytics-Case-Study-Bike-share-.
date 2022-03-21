@@ -153,7 +153,7 @@ divvy2021 %>%
   theme(axis.text.x = element_text(angle = 45))
 
 
-view(ccc) <- divvy2021 %>% 
+divvy2021 %>% 
   group_by(members_casual, ride_id) %>%  
   summarise(number_of_rides = n() ,ride_id) %>% 
   arrange(member_casual, month) %>% 
@@ -206,32 +206,3 @@ all_trips_v2 %>%
 
 
 
-
-
-
-
-
-ggplot(data = divvy202101) + 
-geom_point(mapping = aes(x = member_casual , y = ride_time_length ))
-
-
-
-
-
-write.csv(divvy2021, file = "/Volumes/Hard/R projects/Data.csv")
-
-
-
-divvy202101$ride_time_length <- difftime(divvy202101$ended_at, divvy202101$started_at)
-divvy2021$ride_time_length  <- as.numeric(as.character( divvy2021$ride_time_length))
-
-is.numeric(divvy2021$ride_time_length)
-
-divvy202101$month <- format(as.Date(divvy202101$date), "%m")
-divvy202101$dayweek <- format(as.Date(divvy202101$started_at), "%A")
-divvy202101 <- divvy202101 %>%
-  select(-c(start_lat, start_lng, end_lat, end_lng))
-view(divvy202101)
-divvy <- divvy202101 %>%
-  add_column(Add_Column = difftime(ended_at, started_at, units = "minutes"))
-difftime("2020-5-16", "2020-1-15", units = "days")
